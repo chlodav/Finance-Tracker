@@ -1,120 +1,130 @@
-#wrapper {
-  background: #efefef;
-  width: 100%;
-  height: 100vh;
-  font-family: 'Ubuntu', sans-serif;
-  letter-spacing: 1.2px;
-  font-size: 15px;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+@keyframes bake-pie {
+  from {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  to {
+    transform: rotate(1turn) translate3d(0, 0, 0);
+  }
 }
 
-#app {
-  width: 390px;
-  height: 613px;
-  background: white;
-  margin: auto;
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  background: #EEE;
+  margin: 0; /* Just in case */
+}
+
+main {
+  width: 400px;
+  margin: 30px auto;
+}
+
+section {
+  margin-top: 30px;
+}
+
+.pieID {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Pie container */
+.pie {
+  height: 200px;
+  width: 200px;
   position: relative;
-  top: 10%;
-  box-shadow: 1px 7px 16px #ccc;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 10px;
-}
-
-#toolbar button {
-  background: #f1f1f1;
-  border: 1px solid #ccc;
-  padding: 5px 10px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-#toolbar button:hover {
-  background: #ddd;
-}
-
-#logo {
-  font-weight: bold;
-  font-size: 24px;
-  user-select: none;
-}
-
-#chart {
-  width: 150px;
-  height: 150px;
+  margin: 0 30px 30px 0;
   border-radius: 50%;
-  margin: 10px auto;
-  position: relative;
-  cursor: pointer;
+  overflow: hidden; /* Hide overflow for slices */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Simple donut chart style */
-#chart svg {
-  transform: rotate(-90deg);
-}
-
-#chart-text {
+/* The hole in the pie */
+.pie::before {
+  content: "";
+  display: block;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
-  font-size: 22px;
-  user-select: none;
+  z-index: 10;
+  width: 100px;
+  height: 100px;
+  background: #EEE;
+  border-radius: 50%;
+  top: 50px;
+  left: 50px;
 }
 
-#date-picker {
-  text-align: center;
-  margin: 15px 0;
+/* A little decoration line below the pie */
+.pie::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  box-shadow: 0 0 3px 4px rgba(0, 0, 0, 0.1);
+  margin: 220px auto 0;
 }
 
-#date-picker input[type='date'] {
-  padding: 8px 10px;
-  font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid #aaa;
-  cursor: pointer;
+.slice {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  clip: rect(0, 200px, 200px, 100px);
+  animation: bake-pie 1s ease forwards;
 }
 
-#spent-title {
-  font-weight: bold;
-  text-align: center;
-  margin: 10px 0;
-  user-select: none;
+/* You need different colors for each slice — black all over looks dull */
+.slice span {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  clip: rect(0, 200px, 200px, 100px);
+  /* Default color, override with inline styles or JS */
+  background-color: black;
+  /* Optional: add a subtle shadow */
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
 }
 
-.transaction-day {
-  margin: 10px 0;
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 15px;
+  background: #FFF;
+  font-size: 13px;
+  box-shadow:
+    1px 1px 0 #DDD,
+    2px 2px 0 #BBB;
+  width: 150px; /* Set fixed width to keep layout consistent */
 }
 
-.transaction-day h4 {
-  margin-bottom: 5px;
+.legend li {
+  width: 110px;
+  height: 1.25em;
+  margin-bottom: 0.7em;
+  padding-left: 0.5em;
+  border-left: 1.25em solid black; /* You should assign colors dynamically here */
+  cursor: default;
 }
 
-.transaction {
-  display: flex;
-  justify-content: space-between;
-  padding: 2px 10px;
-  font-size: 14px;
+.legend em {
+  font-style: normal;
 }
 
-#popular {
-  margin-top: 20px;
-  user-select: none;
+.legend span {
+  float: right;
 }
 
-#popular h4 {
-  font-weight: bold;
-}
-
-#popular ol {
-  margin-top: 5px;
-  padding-left: 20px;
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 13px;
+  background: #DDD;
+  padding: 5px 10px;
+  margin: 5px;
 }
