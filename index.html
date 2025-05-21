@@ -3,14 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>Finance Tracker</title>
-  <link
-    rel="stylesheet"
-    href="styles.css"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
-    rel="stylesheet"
-  />
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div id="wrapper">
@@ -22,49 +16,20 @@
       </div>
 
       <div id="chart" title="Click for fun!">
-        <svg width="150" height="150" viewBox="0 0 42 42" class="donut">
-          <circle
-            class="donut-hole"
-            cx="21"
-            cy="21"
-            r="15.9155"
-            fill="#fff"
-          ></circle>
-          <circle
-            class="donut-ring"
-            cx="21"
-            cy="21"
-            r="15.9155"
-            fill="transparent"
-            stroke="#d2d3d4"
-            stroke-width="3"
-          ></circle>
-          <circle
-            class="donut-segment"
-            cx="21"
-            cy="21"
-            r="15.9155"
-            fill="transparent"
-            stroke="#4caf50"
-            stroke-width="3"
-            stroke-dasharray="40 60"
-            stroke-linecap="round"
-          ></circle>
-          <circle
-            class="donut-segment2"
-            cx="21"
-            cy="21"
-            r="15.9155"
-            fill="transparent"
-            stroke="#f44336"
-            stroke-width="3"
-            stroke-dasharray="60 40"
-            stroke-linecap="round"
-            stroke-dashoffset="40"
-          ></circle>
-        </svg>
-        <div id="chart-text">50% Spent</div>
-      </div>
+        <section>
+          <div class="pieID pie"></div>
+          <ul class="pieID legend">
+            <li><em>Humans</em><span>718</span></li>
+            <li><em>Dogs</em><span>531</span></li>
+            <li><em>Cats</em><span>868</span></li>
+            <li><em>Slugs</em><span>344</span></li>
+            <li><em>Aliens</em><span>1145</span></li>
+          </ul>
+        </section>
+        <section>
+          <p>Also, check out my <a href="https://codepen.io/ejsado/pen/HLgzK">Google Charts restyling</a>.</p>
+        </section>
+      </div> <!-- closing #chart -->
 
       <div id="date-picker">
         <input type="date" id="dateInput" />
@@ -82,9 +47,10 @@
           <li>Travel</li>
         </ol>
       </div>
-    </div>
-  </div>
+    </div> <!-- closing #app -->
+  </div> <!-- closing #wrapper -->
 
   <script src="script.js"></script>
 </body>
 </html>
+
