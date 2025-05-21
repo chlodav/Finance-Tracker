@@ -1,2 +1,1 @@
-# Social-media-App
-Dating
+# Finance Tracker
