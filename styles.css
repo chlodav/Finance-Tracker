@@ -1,51 +1,37 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 @keyframes bake-pie {
   from {
-    transform: rotate(0deg) translate3d(0, 0, 0);
-  }
-  to {
-    transform: rotate(1turn) translate3d(0, 0, 0);
+    transform: rotate(0deg) translate3d(0,0,0);
   }
 }
 
 body {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: "Open Sans", Arial;
   background: #EEE;
-  margin: 0; /* Just in case */
 }
-
 main {
   width: 400px;
   margin: 30px auto;
 }
-
 section {
   margin-top: 30px;
 }
-
 .pieID {
   display: inline-block;
   vertical-align: top;
 }
-
-/* Pie container */
 .pie {
   height: 200px;
   width: 200px;
   position: relative;
   margin: 0 30px 30px 0;
-  border-radius: 50%;
-  overflow: hidden; /* Hide overflow for slices */
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
-
-/* The hole in the pie */
 .pie::before {
   content: "";
   display: block;
   position: absolute;
-  z-index: 10;
+  z-index: 1;
   width: 100px;
   height: 100px;
   background: #EEE;
@@ -53,72 +39,58 @@ section {
   top: 50px;
   left: 50px;
 }
-
-/* A little decoration line below the pie */
 .pie::after {
   content: "";
   display: block;
   width: 120px;
   height: 2px;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0,0,0,0.1);
   border-radius: 50%;
-  box-shadow: 0 0 3px 4px rgba(0, 0, 0, 0.1);
-  margin: 220px auto 0;
+  box-shadow: 0 0 3px 4px rgba(0,0,0,0.1);
+  margin: 220px auto;
+  
 }
-
 .slice {
   position: absolute;
   width: 200px;
   height: 200px;
-  clip: rect(0, 200px, 200px, 100px);
-  animation: bake-pie 1s ease forwards;
+  clip: rect(0px, 200px, 200px, 100px);
+  animation: bake-pie 1s;
 }
-
-/* You need different colors for each slice — black all over looks dull */
 .slice span {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
+  background-color: black;
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  clip: rect(0, 200px, 200px, 100px);
-  /* Default color, override with inline styles or JS */
-  background-color: black;
-  /* Optional: add a subtle shadow */
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  clip: rect(0px, 200px, 200px, 100px);
 }
-
 .legend {
-  list-style: none;
+  list-style-type: none;
+  padding: 0;
   margin: 0;
-  padding: 15px;
   background: #FFF;
+  padding: 15px;
   font-size: 13px;
-  box-shadow:
-    1px 1px 0 #DDD,
-    2px 2px 0 #BBB;
-  width: 150px; /* Set fixed width to keep layout consistent */
+  box-shadow: 1px 1px 0 #DDD,
+              2px 2px 0 #BBB;
 }
-
 .legend li {
   width: 110px;
   height: 1.25em;
   margin-bottom: 0.7em;
   padding-left: 0.5em;
-  border-left: 1.25em solid black; /* You should assign colors dynamically here */
-  cursor: default;
+  border-left: 1.25em solid black;
 }
-
 .legend em {
   font-style: normal;
 }
-
 .legend span {
   float: right;
 }
-
 footer {
   position: fixed;
   bottom: 0;
