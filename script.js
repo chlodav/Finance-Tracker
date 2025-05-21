@@ -1,39 +1,55 @@
-// Sample transactions data keyed by date (YYYY-MM-DD)
-const transactionsData = {
-  "2025-05-01": [
-    { amount: -100.0, category: "Groceries" },
-    { amount: -2.9, category: "TFL" },
-    { amount: -10.0, category: "Post Office" },
-  ],
-  "2025-05-02": [],
-  "2025-05-03": [],
-  // Add more dates and data as needed
-};
-
-const transactionsContainer = document.getElementById("transactions-container");
-const spentTitle = document.getElementById("spent-title");
-const dateInput = document.getElementById("dateInput");
-const pieElement = document.querySelector(".pieID.pie");
-const legendElement = document.querySelector(".pieID.legend");
-
-// Helper: calculate slice size (degrees)
 function sliceSize(dataNum, dataTotal) {
   return (dataNum / dataTotal) * 360;
 }
-
-// Add one slice to pie
 function addSlice(sliceSize, pieElement, offset, sliceID, color) {
-  const slice = document.createElement("div");
-  slice.className = `slice ${sliceID}`;
-  slice.style.transform = `rotate(${offset - 1}deg) translate3d(0,0,0)`;
-
-  const span = document.createElement("span");
-  span.style.transform = `rotate(${sliceSize - 179}deg) translate3d(0,0,0)`;
-  span.style.backgroundColor = color;
-
-  slice.appendChild(span);
-  pieElement.appendChild(slice);
+  $(pieElement).append("<div class='slice "+sliceID+"'><span></span></div>");
+  var offset = offset - 1;
+  var sizeRotation = -179 + sliceSize;
+  $("."+sliceID).css({
+    "transform": "rotate("+offset+"deg) translate3d(0,0,0)"
+  });
+  $("."+sliceID+" span").css({
+    "transform"       : "rotate("+sizeRotation+"deg) translate3d(0,0,0)",
+    "background-color": color
+  });
 }
-
-// Recursively split slice if > 179 degrees (CSS clip limitation)
-function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCoun
+function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+  var sliceID = "s"+dataCount+"-"+sliceCount;
+  var maxSize = 179;
+  if(sliceSize<=maxSize) {
+    addSlice(sliceSize, pieElement, offset, sliceID, color);
+  } else {
+    addSlice(maxSize, pieElement, offset, sliceID, color);
+    iterateSlices(sliceSize-maxSize, pieElement, offset+maxSize, dataCount, sliceCount+1, color);
+  }
+}
+function createPie(dataElement, pieElement) {
+  var listData = [];
+  $(dataElement+" span").each(function() {
+    listData.push(Number($(this).html()));
+  });
+  var listTotal = 0;
+  for(var i=0; i<listData.length; i++) {
+    listTotal += listData[i];
+  }
+  var offset = 0;
+  var color = [
+    "cornflowerblue", 
+    "olivedrab", 
+    "orange", 
+    "tomato", 
+    "crimson", 
+    "purple", 
+    "turquoise", 
+    "forestgreen", 
+    "navy", 
+    "gray"
+  ];
+  for(var i=0; i<listData.length; i++) {
+    var size = sliceSize(listData[i], listTotal);
+    iterateSlices(size, pieElement, offset, i, 0, color[i]);
+    $(dataElement+" li:nth-child("+(i+1)+")").css("border-color", color[i]);
+    offset += size;
+  }
+}
+createPie(".pieID.legend", ".pieID.pie");
