@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Finance Tracker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <style>
+    #wrapper {
+      background: #efefef;
+      width: 100%;
+      height: 100vh;
+      font-family: 'Ubuntu', sans-serif;
+      letter-spacing: 1.2px;
+      font-size: 15px;
+    }
+
+    #app {
+      width: 390px;
+      height: 613px;
+      background: white;
+      margin: auto;
+      position: relative;
+      top: 10%;
+      box-shadow: 1px 7px 16px #ccc;
+      padding: 20px;
+    }
+
+    #toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+    }
+
+    #toolbar button {
+      background: #f1f1f1;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    #logo {
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    #chart {
+      width: 150px;
+      height: 150px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      margin: 10px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #chart::before {
+      content: "50%";
+      position: absolute;
+      top: 30%;
+      left: 25%;
+    }
+
+    #chart::after {
+      content: "50%";
+      position: absolute;
+      bottom: 30%;
+      right: 25%;
+    }
+
+    #date-picker {
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    #date-picker button {
+      padding: 8px 16px;
+      border: 1px solid #aaa;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    #spent-title {
+      font-weight: bold;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .transaction-day {
+      margin: 10px 0;
+    }
+
+    .transaction-day h4 {
+      margin-bottom: 5px;
+    }
+
+    .transaction {
+      display: flex;
+      justify-content: space-between;
+      padding: 2px 10px;
+      font-size: 14px;
+    }
+
+    #popular {
+      margin-top: 20px;
+    }
+
+    #popular h4 {
+      font-weight: bold;
+    }
+
+    #popular ol {
+      margin-top: 5px;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="app">
+      <div id="toolbar">
+        <button>My Wallet</button>
+        <div id="logo">LOGO</div>
+        <button>Search</button>
+      </div>
+
+      <div id="chart"></div>
+
+      <div id="date-picker">
+        <button onclick="alert('Date picker coming soon')">Choose Date</button>
+      </div>
+
+      <div id="spent-title">Spent in May 2025</div>
+
+      <div class="transaction-day">
+        <h4>May 1, 2025</h4>
+        <div class="transaction"><span>-100.00</span><span>Groceries</span></div>
+        <div class="transaction"><span>-2.90</span><span>TFL</span></div>
+        <div class="transaction"><span>-10.00</span><span>Post Office</span></div>
+      </div>
+
+      <div class="transaction-day">
+        <h4>May 2, 2025</h4>
+        <div class="transaction"><em>No transactions</em></div>
+      </div>
+
+      <div class="transaction-day">
+        <h4>May 3, 2025</h4>
+        <div class="transaction"><em>No transactions</em></div>
+      </div>
+
+      <div id="popular">
+        <h4>Most Popular</h4>
+        <ol>
+          <li>Food</li>
+          <li>Housing</li>
+          <li>Travel</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
